@@ -1,0 +1,18 @@
+mat-sidenav-container {
+  position: fixed;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
+.mat-drawer {
+  background-color: #e3e3e3;
+}
+
+.fill-space {
+//This fills the remaining space, by using flexbox.
+// Every toolbar row uses a flexbox row layout.
+flex: 1 1 auto;
+}
+
