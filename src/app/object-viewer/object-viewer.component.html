@@ -1,0 +1,71 @@
+<form [formGroup]="form" (submit)="submit()" class="p-4" fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-form-field>
+    <input matInput placeholder="Owner" formControlName="owner">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="ID" formControlName="id">
+  </mat-form-field>
+  <input #fileInput hidden="true" type="file" onclick="this.value=null" (change)="fileInputChange($event)"/>
+  <button mat-flat-button color="primary" (click)="fileInput.click()">Upload File</button>
+  <button type="submit" mat-flat-button color="accent">Submit</button>
+</form>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="urlName">
+    <mat-header-cell *matHeaderCellDef>
+      Name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.urlName}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef fxFlex="80px">
+      Type
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="80px">
+      {{element.type}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="size">
+    <mat-header-cell *matHeaderCellDef fxFlex="80px">
+      Size
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="80px">
+      {{element.size}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="hash">
+    <mat-header-cell *matHeaderCellDef fxFlex="550px">
+      Hash
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="550px">
+      {{element.hash}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="view">
+    <mat-header-cell *matHeaderCellDef fxFlex="80px">
+      View
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="80px">
+      <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="viewHCPEntry(element)">View
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef fxFlex="80px">
+      Delete
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="80px">
+      <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="delete(element)">Delete
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

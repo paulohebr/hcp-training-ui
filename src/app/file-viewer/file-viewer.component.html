@@ -1,0 +1,117 @@
+<div class="p-4">
+  <input #fileInput hidden="true" type="file" onclick="this.value=null" (change)="fileInputChange($event)"/>
+  <button mat-flat-button color="primary" (click)="fileInput.click()">Upload File</button>
+</div>
+<div class="p-4">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="urlName">
+      <mat-header-cell *matHeaderCellDef>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.urlName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef fxFlex="80px">
+        Type
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="80px">
+        {{element.type}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="size">
+      <mat-header-cell *matHeaderCellDef fxFlex="80px">
+        Size
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="80px">
+        {{element.size}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hash">
+      <mat-header-cell *matHeaderCellDef fxFlex="550px">
+        Hash
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="550px">
+        {{element.hash}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef fxFlex="80px">
+        View
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="80px">
+        <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="viewHCPEntry(element)">View
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef fxFlex="80px">
+        Delete
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="80px">
+        <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="delete(element)">Delete
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<div class="p-4">
+  <mat-table [dataSource]="dataSource2">
+    <ng-container matColumnDef="urlName">
+      <mat-header-cell *matHeaderCellDef>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.urlName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="size">
+      <mat-header-cell *matHeaderCellDef fxFlex="80px">
+        Size
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="80px">
+        {{element.size}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hash">
+      <mat-header-cell *matHeaderCellDef fxFlex="550px">
+        Hash
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="550px">
+        {{element.hash}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+      <mat-header-cell *matHeaderCellDef fxFlex="200px">
+        Created
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="200px">
+        {{element.created}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="changed">
+      <mat-header-cell *matHeaderCellDef fxFlex="200px">
+        Changed
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="200px">
+        {{element.changed}}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+  </mat-table>
+</div>
