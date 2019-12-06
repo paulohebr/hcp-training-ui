@@ -34,7 +34,7 @@ export class ObjectViewerComponent implements OnInit {
       this.formData.append('annotation', JSON.stringify(myObject));
       const file: File = this.formData.get('file') as File;
       this.formData.append('size', file.size.toString());
-      this.http.post(`${apiUrl}/upload-annotation/`, this.formData).subscribe(() => {
+      this.http.post(`${apiUrl}/upload-annotation/${file.name}`, this.formData).subscribe(() => {
         this.formData = new FormData();
       });
     }

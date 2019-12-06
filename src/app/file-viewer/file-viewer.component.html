@@ -3,6 +3,15 @@
   <button mat-flat-button color="primary" (click)="fileInput.click()">Upload File</button>
 </div>
 <div class="p-4">
+  <mat-form-field class="mr-4">
+    <input matInput type="text" #createDirectoryInput />
+  </mat-form-field>
+  <button type="button" mat-flat-button color="accent" (click)="onCreateDirectory()">Create Directory</button>
+</div>
+<div *ngIf="this.currentDirectory !== ''" class="p-4">
+  <button type="button" mat-flat-button (click)="onBackDirectory()">Back</button>
+</div>
+<div class="p-4">
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="urlName">
       <mat-header-cell *matHeaderCellDef>
@@ -45,7 +54,7 @@
         View
       </mat-header-cell>
       <mat-cell *matCellDef="let element" fxFlex="80px">
-        <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="viewHCPEntry(element)">View
+        <button type="button" mat-raised-button (click)="viewHCPEntry(element)">View
         </button>
       </mat-cell>
     </ng-container>
@@ -55,7 +64,7 @@
         Delete
       </mat-header-cell>
       <mat-cell *matCellDef="let element" fxFlex="80px">
-        <button *ngIf="element.type == 'object'" type="button" mat-raised-button (click)="delete(element)">Delete
+        <button type="button" mat-raised-button (click)="delete(element)">Delete
         </button>
       </mat-cell>
     </ng-container>
