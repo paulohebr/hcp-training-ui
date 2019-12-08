@@ -4,6 +4,8 @@ import {MatDialog} from '@angular/material';
 import {apiUrl} from '../Config';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MyObject} from '../model/MyObject';
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
 
 @Component({
   selector: 'app-object-viewer',
@@ -16,6 +18,7 @@ export class ObjectViewerComponent implements OnInit {
   private form: FormGroup;
 
   constructor(private http: HttpClient, private dialog: MatDialog, private fb: FormBuilder) {
+    moment.locale('pt-BR');
     const myObject: MyObject = {
       id: undefined,
       owner: undefined,
@@ -30,7 +33,7 @@ export class ObjectViewerComponent implements OnInit {
   submit() {
     if (this.allowSubmit()) {
       const myObject: MyObject = this.form.value;
-      myObject.signDate = new Date();
+      myObject.signDate = moment().toISOString(true);
       this.formData.append('annotation', JSON.stringify(myObject));
       const file: File = this.formData.get('file') as File;
       this.formData.append('size', file.size.toString());
